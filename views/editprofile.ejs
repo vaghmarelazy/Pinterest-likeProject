@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Profile</title>
+    <link rel="stylesheet" href="/stylesheets/editprofile.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+  </head>
+  <body>
+    <div id="container">
+      <a href="/profile" id="backbtn"
+        ><span class="material-symbols-outlined">arrow_back</span></a
+      >
+
+      <div class="container">
+        <div class="profilepic">
+          <img src="<%= user.dp %>" alt="Dp" />
+        </div>
+        <p>Change profile photo</p>
+      
+        <form action="/editprofile" method="post">
+          <label for="name">Name: </label>
+          <input type="text" id="name" name="fullName" value="<%= user.fullName %>" required /><br />
+      
+          <label for="username">Username: </label>
+          <input type="text" id="username" name="username" value="<%= user.username %>" required /><br />
+      
+          <label for="bio">Bio:</label><br />
+          <textarea style="height: 20vh; resize: none" name="bio" id="bio" required><%= user.bio %></textarea><br />
+      
+          <div class="btn">
+            <button type="submit">Save changes</button>
+          </div>
+        </form>
+      </div>
+      
+    </div>
+    <script src="/javascripts/editprofile.js"></script>
+  </body>
+</html>

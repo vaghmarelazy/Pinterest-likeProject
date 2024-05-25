@@ -1,0 +1,150 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Poppins;
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+  background-color: #262626;
+}
+#container {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(312deg, #626711, #000000, #56003a);
+  background-size: 600% 600%;
+
+  -webkit-animation: Background 30s ease infinite;
+  -moz-animation: Background 30s ease infinite;
+  animation: Background 30s ease infinite;
+}
+
+@-webkit-keyframes Background {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+@-moz-keyframes Background {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+@keyframes Background {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+.container {
+  /* background-color: red; */
+  width: 30vw;
+  height: 90vh;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  overflow: hidden;
+  transform: translate(-50%, -50%);
+  padding: 2vw;
+  background-color: #ffffff37;
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+}
+
+
+.container img {
+  width: 100%;
+  overflow: hidden;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.profilepic {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin: 0 auto;
+  /* margin-top: 2vh; */
+  background-color: #fff;
+}
+.container p {
+  text-align: center;
+  cursor: pointer;
+  margin-bottom: 2vh;
+  color: white;
+}
+
+.container input,
+textarea {
+  width: 100%;
+  height: 30px;
+  border: none;
+  /* border-bottom: 1px solid #fff; */
+  /* background-color: white; */
+  outline: none;
+  font-size: 15px;
+  margin-bottom: 2vh;
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  padding: 5px;
+}
+.container label {
+  color: white;
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+.btn {
+  justify-content: center;
+  display: flex;
+  /* position: absolute; */
+  width: 100%;
+}
+button {
+  background-color: white;
+  width: 40%;
+  height: 40px;
+  border: none;
+  border-radius: 15px;
+  font-size: medium;
+  cursor: pointer;
+  transition: all .3s ease-in-out;
+}
+
+button:hover{
+  color: wheat;
+  background: linear-gradient(312deg, #626711, #000000, #56003a);
+  background-size: 600% 600%;
+
+  -webkit-animation: Background 30s ease infinite;
+  -moz-animation: Background 30s ease infinite;
+  animation: Background 30s ease infinite;
+}
+
+::placeholder {
+  color: black;
+}
+
+/* Back Button */
+#backbtn {
+  position: absolute;
+  color: #fff;
+  margin-top: 1vw;
+  margin-left: 1vw;
+  width: 3vw;
+  height: 3vw;
+  border-radius: 30px;
+  text-align: center;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+}
+
+#backbtn:hover {
+  color: black;
+  background-color: white;
+  scale: 1.2;
+}
