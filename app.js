@@ -3,12 +3,12 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-const Sessions = require('express-session')
+const Sessions = require('express-session');
+const passport = require('passport');
+const flash = require('connect-flash');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-const passport = require('passport');
-const flash = require('connect-flash');
 
 var app = express();
 
@@ -21,26 +21,13 @@ app.use(Sessions({
   resave: false,
   saveUninitialized: false,
   secret: "Heloo"
-}))
+}));
 
-app.use(passport.initialize())
-app.use(passport.session())
-passport.serializeUser(usersRouter.serializeUser())
-passport.deserializeUser(usersRouter.deserializeUser())
-// passport.serializeUser(function(user, done) {
-//   done(null, user.id);
-// });
+app.use(passport.initialize());
+app.use(passport.session());
 
-// passport.deserializeUser(function(id, done) {
-//   usersRouter.findById(id)
-//     .then(user => {
-//       done(null, user);
-//     })
-//     .catch(err => {
-//       done(err, null);
-//     });
-// });
-
+passport.serializeUser(usersRouter.serializeUser());
+passport.deserializeUser(usersRouter.deserializeUser());
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -67,4 +54,13 @@ app.use(function (err, req, res, next) {
   res.render('error');
 });
 
+// Export the app module
 module.exports = app;
+
+// Ensure the app listens when run locally (development mode)
+if (require.main === module) {
+  const port = process.env.PORT || 3000;
+  app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
+  });
+}
