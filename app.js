@@ -1,3 +1,5 @@
+require('dotenv').config(); // Load environment variables from .env file
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -6,8 +8,7 @@ var logger = require('morgan');
 const session = require('express-session');
 const passport = require('passport');
 const flash = require('connect-flash');
-const mongoose = require('mongoose');
-require('dotenv').config(); // Ensure environment variables are loaded
+const connectDB = require('./db'); // Import the database connection
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -15,14 +16,7 @@ var usersRouter = require('./routes/users');
 var app = express();
 
 // Connect to MongoDB
-const mongoUri = process.env.MONGODB_URI;
-mongoose.connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => {
-    console.log('Connected to MongoDB');
-  })
-  .catch((err) => {
-    console.error('Error connecting to MongoDB:', err.message);
-  });
+connectDB(); // Call the connection function
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -39,7 +33,7 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   secret: 'Heloo',
-  cookie: { secure: false } // Adjust as needed, secure: true if using HTTPS
+  cookie: { secure: false }
 }));
 
 app.use(passport.initialize());
@@ -58,16 +52,12 @@ app.use(function (req, res, next) {
 
 // error handler
 app.use(function (err, req, res, next) {
-  // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
   res.status(err.status || 500);
   res.render('error');
 });
 
-// Export the app module
 module.exports = app;
 
 // Ensure the app listens when run locally (development mode)
